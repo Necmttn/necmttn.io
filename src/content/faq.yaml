@@ -1,0 +1,6 @@
+- id: start 
+  question: general.faq.start.question 
+  answer: general.faq.start.answer
+- id: tools 
+  question: general.faq.tools.question 
+  answer: general.faq.tools.answer
