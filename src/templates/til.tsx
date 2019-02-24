@@ -346,6 +346,29 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
           </div>
         </aside>
         <Footer />
+        <script type="application/ld+json">
+          {`
+          {
+            "@context": "http://schema.org",
+            "@type": "BlogPosting",
+            "headline": ${post.frontmatter.title},
+            "image": ${config.siteUrl + image.src},
+            "editor": ${post.frontmatter.author.name},
+            "genre":  ${post.frontmatter.tags[0]},
+            "keywords": ${post.frontmatter.tags.join(' ')},
+            "publisher": "Necmttn.io",
+            "url": "${config.siteUrl + props.pathContext.slug},
+            "datePublished": ${post.frontmatter.date},
+            "description": ${post.excerpt},
+            "articleBody": ${post.html},
+            "wordcount": ${post.wordCount.words},
+            "author": {
+              "@type": "Person",
+              "name": ${post.frontmatter.author.name}
+            }
+          }
+        `}
+        </script>
       </Wrapper>
     </IndexLayout>
   );
@@ -365,6 +388,10 @@ export const query = graphql`
     mdx(fields: { slug: { eq: $slug }, langKey: { eq: $langKey } }) {
       excerpt
       timeToRead
+      wordCount {
+        words
+      }
+      html
       code {
         scope
         body

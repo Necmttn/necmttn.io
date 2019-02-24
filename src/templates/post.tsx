@@ -2,7 +2,7 @@ import { graphql, Link } from 'gatsby';
 import Img from 'gatsby-image';
 import * as _ from 'lodash';
 import { setLightness } from 'polished';
-import * as React from 'react';
+import React, { useEffect } from 'react';
 import styled from '@emotion/styled';
 import { css } from 'emotion';
 import { Helmet } from 'react-helmet';
@@ -222,6 +222,12 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
     height = String(Number(width) / post.frontmatter.image.childImageSharp.fluid.aspectRatio);
   }
 
+  const image = _.get(post, 'frontmatter.image.childImageSharp.fluid', {
+    src: `https://source.unsplash.com/featured/160${Math.floor(Math.random() * 10)}x90${Math.floor(
+      Math.random() * 10,
+    )}/?code&randomShit=${Math.random()}`,
+  });
+
   return (
     <IndexLayout className="post-template">
       <Helmet>
@@ -347,6 +353,29 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
         </aside>
         <Footer />
       </Wrapper>
+      <script type="application/ld+json">
+        {`
+          {
+            "@context": "http://schema.org",
+            "@type": "BlogPosting",
+            "headline": ${post.frontmatter.title},
+            "image": ${config.siteUrl + image.src},
+            "editor": ${post.frontmatter.author.name},
+            "genre":  ${post.frontmatter.tags[0]},
+            "keywords": ${post.frontmatter.tags.join(' ')},
+            "publisher": "Necmttn.io",
+            "url": "${config.siteUrl + props.pathContext.slug},
+            "datePublished": ${post.frontmatter.date},
+            "description": ${post.excerpt},
+            "articleBody": ${post.html},
+            "wordcount": ${post.wordCount.words},
+            "author": {
+              "@type": "Person",
+              "name": ${post.frontmatter.author.name}
+            }
+          }
+        `}
+      </script>
     </IndexLayout>
   );
 };
@@ -368,6 +397,10 @@ export const query = graphql`
       code {
         scope
         body
+      }
+      html
+      wordCount {
+        words
       }
       frontmatter {
         title

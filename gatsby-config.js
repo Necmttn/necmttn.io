@@ -153,5 +153,6 @@ module.exports = {
       },
     },
     'gatsby-plugin-emotion',
+    'gatsby-plugin-sitemap',
   ],
 };
