@@ -221,7 +221,7 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
     width = post.frontmatter.image.childImageSharp.fluid.sizes.split(', ')[1].split('px')[0];
     height = String(Number(width) / post.frontmatter.image.childImageSharp.fluid.aspectRatio);
   }
-  console.log(props);
+
   return (
     <IndexLayout className="post-template">
       <Helmet>

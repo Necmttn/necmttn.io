@@ -1,5 +1,9 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "*": ["types/*"]
+    },
     "module": "commonjs",
     "target": "esnext",
     "jsx": "preserve",

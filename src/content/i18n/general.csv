@@ -3,7 +3,26 @@ nav.home,Home,首页
 nav.about,About,关于
 nav.blog,Blog,博客
 nav.projects,Projects,项目
+nav.til,#TIL,#TIL
 nav.contact,Contact,联系
+splash.this_is,This is Necmettin,我是尼克
+splash.punch_line_1,I recently founded,我最近成立了
+splash.punch_line_2, a better way of kickstart sidehustle for everyone.,一个更好的方式，让每个人都能开始喧嚣.
+splash.who_am_i,I am a,我是
+splash.open_source_1,I've been actively contributing to open source projects since 2013. You can see some of my open source work on,自2013年以来，我一直在积极参与开源项目。你可以看到我的一些开源工作
+splash.open_source_2,I'm grateful for the progress open source has made over the years.,我很感激开源多年来所取得的进步。
+splash.developer,Self-taught Developer,自学成才的软件工程师
+splash.maker,Maker,制作者
+splash.mentor,Mentor,导师
+splash.nomad,Digital Nomad,数字游牧民族
+splash.video,Videographer,摄影师
+splash.photo,Photographer,摄影师
+splash.where_i_am,"I'm currently living as Digital Nomad.", 我现在是数字游牧民族。
+splash.how_i_spent_time,"I spend most of my time thinking, reading, learning languages and building", 我花了大部分时间思考，阅读和
+splash.sales_pitch_1,"Interested in working on a project together ? I enjoy building high-performance, user-friendly",有兴趣一起完成一个项目吗？ 我喜欢建立高性能，用户友好的
+splash.sales_pitch_2,"Get in touch with me to learn more!",与我联系以了解更多信息！
+splash.web_apps,web apps.,构建网络应用程序
+splash.applications,applications,应用
 splash.title1,We build software,我们协助企业
 splash.title2,to help business grow.,共同成长
 splash.intro-text,"We're eager to help data driven companies achieve their business goals. All that is possible thanks to our distributed team of highly motivated individuals.",我们渴望通过软件帮助企业达成商业上的目标
@@ -22,3 +41,4 @@ faq.tools.question,"How do we collaborate during the development phase?",在开�
 faq.tools.answer,"We use modern tools to ensure transparency (tasks and progress via Trello, IM via Slack/Wechat, source code via GitHub/GitLab, but most importantly, a *working* demo at all times, so you can constantly visualize the progress), and fluidity (being able to visualize progress meaning that we can cater to some amount of change on a weekly basis) during the entire development process. We do whatever it takes to keep this remote collaboration smooth, and make it to the timeline we want. Time is essence in the startup world.",我们使用自研的项目管理软件，并结合微信，每周制定工作计划，同步沟通项目进度，并且会有可运行的demo，确保项目进行有条不紊，并按时交付。
 faq.button.email-support,Email Support,Email
 faq.button.live-support,Live Support,实时聊天
+til.header_title,Today I Learned #TIL,今天我学会了#TIL

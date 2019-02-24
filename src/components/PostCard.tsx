@@ -197,24 +197,25 @@ export interface PostCardProps {
 }
 
 const PostCard: React.FunctionComponent<PostCardProps> = ({ post }) => {
+  const image = _.get(post, 'frontmatter.image.childImageSharp.fluid', {
+    src: `https://source.unsplash.com/featured/40${Math.floor(Math.random() * 10)}x40${Math.floor(
+      Math.random() * 10,
+    )}/?code&randomShit=${Math.random()}`,
+  });
   return (
     <article className={`post-card ${PostCardStyles} ${!post.frontmatter.image ? 'no-image' : ''}`}>
-      {post.frontmatter.image && (
-        <Link
-          className={`${PostCardImageLink} post-card-image-link`}
-          to={`/${post.fields.langKey === 'en' ? '' : post.fields.langKey}${post.fields.slug}`}
-        >
-          <PostCardImage className="post-card-image">
-            {post.frontmatter.image && post.frontmatter.image.childImageSharp.fluid && (
-              <Img
-                alt={`${post.frontmatter.title} cover image`}
-                style={{ height: '100%' }}
-                fluid={post.frontmatter.image.childImageSharp.fluid}
-              />
-            )}
-          </PostCardImage>
-        </Link>
-      )}
+      <Link
+        className={`${PostCardImageLink} post-card-image-link`}
+        to={`/${post.fields.langKey === 'en' ? '' : post.fields.langKey}${post.fields.slug}`}
+      >
+        <PostCardImage className="post-card-image">
+          <Img
+            alt={`${post.frontmatter.title} cover image`}
+            style={{ height: '100%' }}
+            fluid={image}
+          />
+        </PostCardImage>
+      </Link>
       <PostCardContent className="post-card-content">
         <Link
           className={`${PostCardContentLink} post-card-content-link`}

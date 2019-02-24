@@ -199,9 +199,11 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
         <main id="site-main" className={`${SiteMain} ${outer}`}>
           <div className={`${inner}`}>
             <div className={`${PostFeed} ${PostFeedRaise}`}>
-              {(!props.data.allMdx) ? null : props.data.allMdx.edges.map(post => {
-                return <ProjectCard key={post.node.fields.slug} post={post.node} />;
-              })}
+              {!props.data.allMdx
+                ? null
+                : props.data.allMdx.edges.map(post => {
+                    return <ProjectCard key={post.node.fields.slug} post={post.node} />;
+                  })}
             </div>
           </div>
         </main>
@@ -217,7 +219,7 @@ export default IndexPage;
 
 export const pageQuery = graphql`
   query {
-    logo: file(relativePath: { eq: "img/x-tech-logo-2.png" }) {
+    logo: file(relativePath: { eq: "logo/nk-logo-white-200.png" }) {
       childImageSharp {
         # Specify the image processing specifications right in the query.
         # Makes it trivial to update as your page's design changes.
@@ -226,7 +228,7 @@ export const pageQuery = graphql`
         }
       }
     }
-    header: file(relativePath: { eq: "img/blog-cover.jpg" }) {
+    header: file(relativePath: { eq: "img/project.jpg" }) {
       childImageSharp {
         # Specify the image processing specifications right in the query.
         # Makes it trivial to update as your page's design changes.

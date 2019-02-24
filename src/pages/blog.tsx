@@ -154,9 +154,11 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
         <main id="site-main" className={`${SiteMain} ${outer}`}>
           <div className={`${inner}`}>
             <div className={`${PostFeed} ${PostFeedRaise}`}>
-              {(!props.data.allMdx) ? null : props.data.allMdx.edges.map(post => {
-                return <PostCard key={post.node.fields.slug} post={post.node} />;
-              })}
+              {!props.data.allMdx
+                ? null
+                : props.data.allMdx.edges.map(post => {
+                    return <PostCard key={post.node.fields.slug} post={post.node} />;
+                  })}
             </div>
           </div>
         </main>
@@ -172,7 +174,7 @@ export default IndexPage;
 
 export const pageQuery = graphql`
   query {
-    logo: file(relativePath: { eq: "img/x-tech-logo-2.png" }) {
+    logo: file(relativePath: { eq: "logo/nk-logo-white-200.png" }) {
       childImageSharp {
         # Specify the image processing specifications right in the query.
         # Makes it trivial to update as your page's design changes.
@@ -194,13 +196,8 @@ export const pageQuery = graphql`
       limit: 1000
       sort: { fields: [frontmatter___date], order: DESC }
       filter: {
-        fields: {
-          langKey: { eq: "en" }
-        },
-        frontmatter: {
-          layout: { eq: "post" }
-          draft: { ne: true }
-        }
+        fields: { langKey: { eq: "en" } }
+        frontmatter: { layout: { eq: "post" }, draft: { ne: true } }
       }
     ) {
       edges {

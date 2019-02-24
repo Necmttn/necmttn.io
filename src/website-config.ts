@@ -31,20 +31,20 @@ export interface WebsiteConfig {
 }
 
 const config: WebsiteConfig = {
-  title: 'Xanthous Tech',
-  description: 'We build software to help business grow.',
+  title: 'Necmettin Karakaya',
+  description: 'I build software to help business grow.',
   coverImage: 'img/blog-cover.jpg',
-  logo: 'avatars/xanthous.png',
+  logo: 'logo/nk-logo-white-200.png',
   lang: 'en',
-  siteUrl: 'https://x-tech.io',
-  facebook: 'https://www.facebook.com/XanthousTech',
-  twitter: 'https://twitter.com/XanthousTech',
-  medium: 'https://medium.com/xanthous',
-  github: 'https://github.com/xanthous-tech',
+  siteUrl: 'https://necmttn.io',
+  facebook: 'https://www.facebook.com/necmettin.karayaka',
+  twitter: 'https://twitter.com/necmttn',
+  medium: 'https://medium.com/necmttn',
+  github: 'https://github.com/necmttn',
   showSubscribe: true,
   mailchimpAction:
-    'https://twitter.us19.list-manage.com/subscribe/post?u=a89b6987ac248c81b0b7f3a0f&amp;id=7d777b7d75',
-  mailchimpName: 'b_a89b6987ac248c81b0b7f3a0f_7d777b7d75',
+    'https://rocks.us19.list-manage.com/subscribe/post?u=3d422bed821565475dc0b4aff&amp;id=641fdd2880',
+  mailchimpName: 'b_3d422bed821565475dc0b4aff_641fdd2880',
 };
 
 export default config;
