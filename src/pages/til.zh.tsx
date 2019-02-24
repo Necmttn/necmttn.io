@@ -21,6 +21,7 @@ import {
   SiteTitle,
 } from '../styles/shared';
 
+import t from '../content/i18n';
 import { PageContext } from '../templates/post';
 
 const HomePosts = css`

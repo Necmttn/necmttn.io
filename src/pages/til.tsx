@@ -2,6 +2,7 @@ import { graphql } from 'gatsby';
 import * as React from 'react';
 import { css } from 'emotion';
 import Helmet from 'react-helmet';
+import _ from 'lodash';
 
 import Footer from '../components/Footer';
 import SiteNav from '../components/header/SiteNav';
