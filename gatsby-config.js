@@ -4,7 +4,7 @@ module.exports = {
   siteMetadata: {
     title: 'Xanthous Tech',
     description: 'We build software to help business grow.',
-    siteUrl: 'https://x-tech.io', // full path to blog - no ending slash
+    siteUrl: 'https://necmttn.io', // full path to blog - no ending slash
   },
   mapping: {
     'Mdx.frontmatter.author': 'AuthorYaml',
