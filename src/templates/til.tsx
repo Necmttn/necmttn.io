@@ -360,7 +360,6 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
             "url": "${config.siteUrl + props.pathContext.slug},
             "datePublished": ${post.frontmatter.date},
             "description": ${post.excerpt},
-            "articleBody": ${post.html},
             "wordcount": ${post.wordCount.words},
             "author": {
               "@type": "Person",
@@ -391,7 +390,6 @@ export const query = graphql`
       wordCount {
         words
       }
-      html
       code {
         scope
         body
