@@ -153,9 +153,9 @@ class SiteNav extends React.Component<SiteNavProps, SiteNaveState> {
             <li role="menuitem">
               <Link to={`${linkPrefix}/`}>{t['general.nav.home']()}</Link>
             </li>
-            <li role="menuitem">
-              <Link to={`${linkPrefix}/about`}>{t['general.nav.about']()}</Link>
-            </li>
+            // <li role="menuitem">
+            //   <Link to={`${linkPrefix}/about`}>{t['general.nav.about']()}</Link>
+            // </li>
             <li role="menuitem">
               <Link to={`${linkPrefix}/blog`}>{t['general.nav.blog']()}</Link>
             </li>
