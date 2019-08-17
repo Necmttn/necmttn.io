@@ -237,6 +237,10 @@ const ChallengeStatus = styled.section`
   @media (max-width: 500px) {
     padding-left: 20px;
   }
+  
+  .streak {
+    text-decoration: underline; 
+  }
 `;
 
 const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
@@ -325,8 +329,9 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
                 </PostFullImage>
               )}
               <ChallengeStatus>
-                Streak: {entries.totalCount}
-
+                <span className="streak">
+                  Streak: {entries.totalCount} / {post.frontmatter.meta.length}{' '}
+                </span>
               </ChallengeStatus>
               <PostMDXContent body={post.code.body} />
               {entries.edges.map(entry => (
