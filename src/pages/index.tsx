@@ -201,7 +201,7 @@ export const pageQuery = graphql`
       sort: { fields: [frontmatter___date], order: DESC }
       filter: {
         fields: { langKey: { eq: "en" } }
-        frontmatter: { layout: { eq: "post" }, draft: { ne: true } }
+        frontmatter: { layout: { eq: "post" }, draft: { ne: true }, challenge: { ne: true } }
       }
     ) {
       edges {

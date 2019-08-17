@@ -5,8 +5,7 @@ import Helmet from 'react-helmet';
 
 import Footer from '../components/Footer';
 import SiteNav from '../components/header/SiteNav';
-// import ChallengeCard from '../components/ChallengeCard';
-import ProjectCard from '../components/ProjectCard';
+import PostCard from '../components/PostCard';
 import Wrapper from '../components/Wrapper';
 import IndexLayout from '../layouts';
 import config from '../website-config';
@@ -21,6 +20,9 @@ import {
   SiteMain,
   SiteTitle,
 } from '../styles/shared';
+
+import { PageContext } from '../templates/post';
+import ChallengeCard from '../components/ChallengeCard';
 
 const HomePosts = css`
   @media (min-width: 795px) {
@@ -64,52 +66,6 @@ const HomePosts = css`
   }
 `;
 
-export interface PageContext {
-  excerpt: string;
-  timeToRead: number;
-  fields: {
-    slug: string;
-    langKey: string;
-  };
-  code: {
-    body: any;
-  };
-  frontmatter: {
-    image: {
-      childImageSharp: {
-        fluid: any;
-      };
-    };
-    title: string;
-    date: string;
-    tags: string[];
-    author: {
-      id: string;
-      name: string;
-      bio: string;
-      avatar: {
-        children: {
-          fixed: {
-            src: string;
-          };
-        }[];
-      };
-    };
-    meta: {
-      length: string;
-      techstack: {
-        id: string;
-        name: string;
-        logo: {
-          childImageSharp: {
-            fixed: any;
-          };
-        };
-      }[];
-    };
-  };
-}
-
 export interface IndexProps {
   pageContext: {
     langKey: string;
@@ -139,14 +95,14 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
   const height = String(Number(width) / props.data.header.childImageSharp.fluid.aspectRatio);
   console.log(props);
   return (
-    <IndexLayout langKey="en" className={`${HomePosts}`}>
+    <IndexLayout className={`${HomePosts}`} {...props.pageContext}>
       <Helmet>
         <html lang={config.lang} />
-        <title>{`Projects - ${config.title}`}</title>
+        <title>{`Blog - ${config.title}`}</title>
         <meta name="description" content={config.description} />
         <meta property="og:site_name" content={config.title} />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content={`Projects - ${config.title}`} />
+        <meta property="og:title" content={`Blog - ${config.title}`} />
         <meta property="og:description" content={config.description} />
         <meta property="og:url" content={config.siteUrl} />
         <meta
@@ -155,7 +111,7 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
         />
         {config.facebook && <meta property="article:publisher" content={config.facebook} />}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={`Projects - ${config.title}`} />
+        <meta name="twitter:title" content={`Blog - ${config.title}`} />
         <meta name="twitter:description" content={config.description} />
         <meta name="twitter:url" content={config.siteUrl} />
         <meta
@@ -190,10 +146,13 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
                 ) : (
                   config.title
                 )}
+                <br />
               </SiteTitle>
-              <SiteDescription>{config.description}</SiteDescription>
+              <SiteDescription>
+                You are your only opponent
+              </SiteDescription>
             </SiteHeaderContent>
-            <SiteNav {...props.pageContext} isHome slug="/projects" />
+            <SiteNav {...props.pageContext} isHome slug="/blog" />
           </div>
         </header>
         <main id="site-main" className={`${SiteMain} ${outer}`}>
@@ -202,8 +161,8 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
               {!props.data.allMdx
                 ? null
                 : props.data.allMdx.edges.map(post => {
-                    return <ProjectCard key={post.node.fields.slug} post={post.node} />;
-                  })}
+                  return <ChallengeCard key={post.node.fields.slug} post={post.node} />;
+                })}
             </div>
           </div>
         </main>
@@ -218,83 +177,74 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
 export default IndexPage;
 
 export const pageQuery = graphql`
-  query {
-    logo: file(relativePath: { eq: "logo/nk-logo-white-200.png" }) {
-      childImageSharp {
-        # Specify the image processing specifications right in the query.
-        # Makes it trivial to update as your page's design changes.
-        fixed {
-          ...GatsbyImageSharpFixed
-        }
-      }
-    }
-    header: file(relativePath: { eq: "img/project.jpg" }) {
-      childImageSharp {
-        # Specify the image processing specifications right in the query.
-        # Makes it trivial to update as your page's design changes.
-        fluid(maxWidth: 2000) {
-          ...GatsbyImageSharpFluid
-        }
-      }
-    }
-    allMdx(
-      limit: 1000
-      sort: { fields: [frontmatter___date], order: DESC }
-      filter: {
-        fields: { langKey: { eq: "en" } }
-        frontmatter: { layout: { eq: "project" }, draft: { ne: true } }
-      }
-    ) {
-      edges {
-        node {
-          timeToRead
-          frontmatter {
-            title
-            date
-            tags
-            image {
-              childImageSharp {
-                fluid(maxWidth: 3720) {
-                  ...GatsbyImageSharpFluid
+    query {
+        logo: file(relativePath: { eq: "logo/nk-logo-white-200.png" }) {
+            childImageSharp {
+                # Specify the image processing specifications right in the query.
+                # Makes it trivial to update as your page's design changes.
+                fixed {
+                    ...GatsbyImageSharpFixed
                 }
-              }
             }
-            author {
-              id
-              name
-              bio
-              avatar {
-                children {
-                  ... on ImageSharp {
-                    fixed(quality: 100) {
-                      src
+        }
+        header: file(relativePath: { eq: "img/blog-cover.jpg" }) {
+            childImageSharp {
+                # Specify the image processing specifications right in the query.
+                # Makes it trivial to update as your page's design changes.
+                fluid(maxWidth: 2000) {
+                    ...GatsbyImageSharpFluid
+                }
+            }
+        }
+        allMdx(
+            limit: 1000
+            sort: { fields: [frontmatter___date], order: DESC }
+            filter: {
+                fields: { langKey: { eq: "en" } }
+                frontmatter: { layout: { eq: "challengeRoot" }, draft: { ne: true } }
+            }
+        ) {
+            edges {
+                node {
+                    timeToRead
+                    frontmatter {
+                        title
+                        date
+                        tags
+                        image {
+                            childImageSharp {
+                                fluid(maxWidth: 3720) {
+                                    ...GatsbyImageSharpFluid
+                                }
+                            }
+                        }
+                        author {
+                            id
+                            name
+                            bio
+                            avatar {
+                                children {
+                                    ... on ImageSharp {
+                                        fixed(quality: 100) {
+                                            src
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        meta {
+                            length
+                            status
+                        }
                     }
-                  }
-                }
-              }
-            }
-            meta {
-              techstack {
-                id
-                name
-                logo {
-                  childImageSharp {
-                    fixed(quality: 100) {
-                      ...GatsbyImageSharpFixed
+                    excerpt
+                    fields {
+                        layout
+                        slug
+                        langKey
                     }
-                  }
                 }
-              }
             }
-          }
-          excerpt
-          fields {
-            layout
-            slug
-            langKey
-          }
         }
-      }
     }
-  }
 `;
