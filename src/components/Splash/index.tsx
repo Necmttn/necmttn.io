@@ -121,11 +121,6 @@ class Splash extends React.Component<SplashProps & InjectedIntlProps, {}> {
                 {t['general.splash.this_is']()}, {t['general.splash.who_am_i']()}{' '}
                 <span ref={this.title} />
                 <br />
-                {t['general.splash.punch_line_1']()}{' '}
-                <a target="_blank" href="https://sidehustle.rocks/?ref=necmttn.io">
-                  SideHustle.rocks
-                </a>
-                {t['general.splash.punch_line_2']()}{' '}
               </h2>
             </div>
             <div className="intro-text">
@@ -142,7 +137,7 @@ class Splash extends React.Component<SplashProps & InjectedIntlProps, {}> {
               </p>
               <p>
                 {t['general.splash.sales_pitch_1']()}{' '}
-                <a href="/projects">{t['general.splash.applications']()}</a>
+                <a href="https://www.upwork.com/fl/necmttn">{t['general.splash.applications']()}</a>
                 {'. '}
                 {t['general.splash.sales_pitch_2']()}
               </p>
